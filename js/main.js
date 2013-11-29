@@ -30,8 +30,16 @@ $(function() { // <-- when docment is ready the following is executed
 
     // listener for "refresh-basket event"
     $(document).on('refresh-basket', function(){
-    	console.log( 'sss' );
-
+    	$('#total-amount').text(0);
+        $('#basket-area').find('article.single-item').each(function(total) {
+            var $this = $(this),
+                price = parseFloat($this.attr('data-price').replace(',','.')),
+                count = parseFloat($this.attr('data-count')),
+                total = parseFloat($("#total-amount").text());
+            console.log( price,count,total );
+            var temp = (total + (price * count))*10;
+            $('#total-amount').text( Math.round(temp)/10 );
+        });
 
     });
     
