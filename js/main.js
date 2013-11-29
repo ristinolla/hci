@@ -1,7 +1,6 @@
 $(function() { // <-- when docment is ready the following is executed
     $('html').removeClass('no-js');
     
-    //$('#container').css('height', window.outerHeight);
    
     
     // resize layout function that is called everytime window is resized
@@ -9,6 +8,7 @@ $(function() { // <-- when docment is ready the following is executed
 	     
 	     $('#main-content').css('width', (window.outerWidth - 342) );
 		 $('#main-content').css('height', ($(window).outerHeight(true) - 80) );
+         $('#payment-content').css('height', ($(window).outerHeight(true) - 80) );
 		 $('#side-bar').css('height', ($(window).outerHeight(true) - 80) );
 		 $('#basket-area').css('height', ($(window).outerHeight(true) - 292) );
 		 $('#overlay').css('height',$(window).outerHeight(true)).css('width', $(window).outerWidth(true));
@@ -27,6 +27,13 @@ $(function() { // <-- when docment is ready the following is executed
 	    
     });
 
+    // temp for testing purposes
+    $('#show-payment-section').on('click', function(e){
+        e.preventDefault();
+        $('#payment-content').show();
+        $('#main-content').hide();
+        $('#side-bar').hide();
+    });
 
     // listener for "refresh-basket event"
     $(document).on('refresh-basket', function(){

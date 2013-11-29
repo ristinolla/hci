@@ -130,7 +130,16 @@ ul.unstyled-list {
 
 .container {
 	float: left;
+	width: 100%;
+
 }
+
+.wide-content {
+	float: left;
+	width: 100%;
+}
+
+#payment-content { display: none;  }
 
 
 /*****************************************************
