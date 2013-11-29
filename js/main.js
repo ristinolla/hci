@@ -52,7 +52,7 @@ $(function() { // <-- when docment is ready the following is executed
     };
 
     // ajaxing the information from the burger file that is is in dataurl of the article
-    $('body').on('click','.show-info', function() {
+    $('body').on('click','.show-info', function(e) {
     	e.preventDefault();
     	var $item = $(this).parent().parent(); //select the article.single-item -tag
     	openModal($item.attr('data-uri'));
