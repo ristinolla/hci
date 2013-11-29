@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>HCI - TEAM 16</title>
+        <meta name="description" content="">
+		
+		<!-- 	META TAGS FOR WEBAPP / MOBILE: https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag	 -->
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- 	LINKS TO IMAGES FOR WEBAPP USE: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html	 -->
+		<link rel="apple-touch-startup-image" href="/startup.png">
+		<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png">
+		
+		<!-- 	GOOGLE WEBFONTS: http://www.google.com/fonts#UsePlace:use/Collection:Montserrat	 -->
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,600,300' rel='stylesheet' type='text/css'>
+
+		
+		<!-- 	STYLESHEETS: font-awesome examples link: http://fortawesome.github.io/Font-Awesome/examples/	 -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+
+		<div id="container" class="container clearfix">
+			<header class="dark-gray">
+				<ul id="left-nav" class="inline-list left-nav">
+					<li class="home"><a href="#">Home</a></li>
+					<li><a href="#">Main Courses</a></li>
+					<li class="current"><a href="#">Burgers</a></li>
+				</ul>
+				<ul id="right-nav" class="inline-list right-nav">
+					<li class="has-dropdown"><a href="#">EN <i class="fa fa-caret-down"></i></a>
+						<ul class="submenu">
+							<li class="current"><a href="#">English</a></li>
+							<li><a href="#">Finnish</a></li>
+							<li><a href="#">Swedish</a></li>
+						</ul>
+					</li>
+					<li class="blue"><a href="#">Waiter</a></li>
+				</ul>
+			</header>
+			<div id="main-content" class="main-content almost-white">
+				<article class="single-item"
+				 data-uri="food/burgers/burger.html"
+				 data-modal="true"
+				 >
+					<div class="image-wrap"><img src="http://placekitten.com/160/160"></div>
+					<div class="description">
+						<h3>burger</h3>
+						<p class="ingress">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem.</p>
+						<ul class="details">
+							<li>1233kcal</li>
+							<li>100% Finnish meat</li>
+							<li>High in protein</li>
+						</ul>
+					</div>
+					<span class="price">12,40 &euro;</span>
+					<div class="tools">
+						<button class="show-info blue"><i class="fa fa-info"></i><br>Info</button>
+						<button class="add-item green"><i class="fa fa-plus"></i><br>Add</button>
+					</div>
+				</article>
+				<article class="single-item" 
+					data-uri="false" 
+					data-modal="false"
+					data-name="Medium coke"
+					data-price="2,40"
+					>
+					<div class="image-wrap"><img src="http://placekitten.com/160/160"></div>
+					<div class="description">
+						<h3>Medium Coke</h3>
+						<p class="ingress">Freshhhh coke, you know you want it.</p>
+						<ul class="details">
+							<li>one billion kcal</li>
+							<li>100% non healthy</li>
+							<li>has some coke...</li>
+						</ul>
+					</div>
+					<span class="price">2,40 &euro;</span>
+					<div class="tools">
+						<button class="show-info blue" disabled="disabled"><i class="fa fa-info"></i><br>Info</button>
+						<button class="add-item green"><i class="fa fa-plus"></i><br>Add</button>
+					</div>
+
+				</article>
+			</div>
+			
+			
+			
+			<!-- SIDEBARR	 -->
+			<aside id="side-bar" class="side-bar darkest-gray">
+				<h2 class="orange">Your Orders</h2>
+				<div class="empty-guide hidden">
+					<div>Drag and drop<br>or<br>add items here</div>
+				</div>
+				<div id="basket-area" class="basket-area">
+					
+				</div>
+				<div id="recent-orders">
+				</div>	
+				<div class="total-area orange">
+					<span class="darken-text">Total:</span> <span id="total-amount">0,00</span>&euro;
+				</div>
+
+				<div class="progress-buttons">
+					<button id="place-order-btn" class="big-btn green" >Place Order</button>
+					<button id="order-bill-btn" class="big-btn green" disabled="disabled">Order Bill</button>
+				</div>
+			</aside>
+			
+			<!-- SIDEBARR end	 -->
+		</div> <!-- container	 -->
+		
+		<div id="info-modal" class="info-modal">
+			<div id="modal-content" class="modal-content"></div>
+			<div id="modal-controls" class="modal-controls">
+				<button class="red btn-large pull-left" id="close-info-modal">Cancel</button>
+				<button class="green btn-large pull-right" id="add-item-modal">Add item</button>
+			</div>
+		</div>
+		
+		<div id="overlay" class="overlay"></div>
+		
+        <!-- Underscore template:  http://underscorejs.org/#template -->
+        <noscript id="basket-item-template">
+        	<article class="single-item" 
+        			 data-name="<%= name %>" 
+        			 data-price="<%= price %>"
+        			 data-count="1"
+        		>
+    			<div class="amount-controls"><button class="blue increase">+</button><span class="blue count">1</span><button class="blue decrease" disabled="disabled">-</button></div>
+				<div class="description">
+					<h3><%= name %></h3>
+				<p class="selected-options">
+					<%  if(side_dish){
+							print('Side dish: ' +  side_dish + '<br>');				
+					 	} 
+						if(diets){
+							print("Diet: ");
+			        	 	for (var i=0;i<diets.length;i++) {
+						   		print( diets[i]);	
+						    	if(i+1 < diets.length ){
+						    		print(', ');
+						    	}
+						    };
+						}
+					  %>			   
+				</p>
+									
+				</div>
+				<span class="price"><%= price %> €</span>
+				<button class="delete-item red"><i class="fa fa-trash-o"></i></button>
+			</article>
+        </noscript>	
+
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/retina-1.1.0.min.js"></script>  <!--http://retinajs.com/ -->
+       
+        <script src="js/main.js"></script>
+
+
+    </body>
+</html>

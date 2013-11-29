@@ -1,0 +1,712 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+button {
+	outline: none;
+	border: none;
+	background: none;
+	color: #FFF;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+/*****************************************************
+ Colors, types and other global and misc styles
+ *****************************************************/
+a { text-decoration: none; }
+a:hover { text-decoration: none; text-shadow: 0px 0px 2px white; }
+a:active { text-shadow: 0px 0px 4px white; }
+
+.color-blue { background: #affaf; color: white; }   
+.darkest-gray { background: #232323; color: white; }
+.dark-gray { background: #2e2e2e; color: white; }
+
+.almost-white { background: #f6f4f0; color: #232323; }
+.blue { background: #487b86; color: white; }
+
+.green { background: #1f7f5c; color: white; }
+
+.orange { background: #dba571; color: white; }
+.orange .darken-text { color: #795837; }
+
+.red { background: #a8514f; color: white; }
+
+.stars { color: #dba571;}
+
+.blue a,
+.darkest-gray a,
+.dark-gray a,
+.green a,
+.orange a {
+	color: white;
+}
+
+.btn-large {
+	line-height: 20px;
+	font-size: 12px;
+	padding: 10px 40px;
+}
+   
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.montserrat { font-family: 'Montserrat', sans-serif; }
+.open-sans { font-family: 'Open Sans', sans-serif; }
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.inline-list > li {
+	display: inline-block;
+	list-style: none;
+}
+.unstyled-list li,
+ul.unstyled-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.container {
+	float: left;
+}
+
+
+/*****************************************************
+ Header Navigaton 
+ *****************************************************/
+header {
+	width: 100%;
+	height: 80px;
+	float: left;
+	z-index: 1000;
+	position: relative;
+}
+
+.left-nav, .left-nav li, .right-nav li   {
+	float: left;
+}
+
+.right-nav{
+	float: right;
+}
+
+.right-nav,
+.left-nav {
+	margin: 0;
+	padding: 0;
+	line-height: 50px;
+	font-size: 18px;
+}
+
+.right-nav > ul > li,
+.left-nav > ul > li {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.right-nav a,
+.left-nav a {
+	height: 50px;
+	display: inline-block;
+}
+
+.right-nav a {
+	padding: 15px 30px;
+}
+
+.right-nav > ul > li:first-of-type {
+	border-left: 1px solid #232323;
+}
+
+.left-nav a { padding: 15px 15px 15px 40px; }
+.left-nav li {
+	background: #232323 url('../img/nav_divider_dark.png') 0 0 no-repeat;	
+}
+.left-nav li.home {
+	background: #232323; 
+}
+
+
+.left-nav li.current {	
+	background: transparent url('../img/nav_divider_to_light.png') 0 0 no-repeat;
+}
+
+.has-dropdown {
+	position: relative;
+	border-left: 1px solid #232323;
+}
+.submenu {
+	position: absolute;
+	background: #000;
+	margin: 0;
+	padding: 0;
+	left: 0;
+	list-style: none;
+	display: none;
+	background: #232323;
+}
+.submenu-open > a {
+	background: #232323;
+}
+.submenu-open ul {
+	display: block;
+}
+.submenu .current {
+	background: #2e2e2e;
+}
+.submenu a {
+	width: 166px;
+	padding: 15px 28px;
+	line-height: 18px;
+	height: auto;
+	box-sizing: border-box;
+	border-bottom: 1px solid #2e2e2e;
+}
+.submenu li:last-of-type { border-bottom: none; }
+
+
+/*****************************************************
+ Main content 
+ *****************************************************/
+
+.main-content {
+	float: left;
+	display: inline-block;
+}
+
+/*****************************************************
+ Sidebar content 
+ *****************************************************/
+
+.side-bar {
+	float: right;
+	display: inline-block;
+	width: 342px;
+	position: relative;
+}
+
+.side-bar .empty-guide {
+	margin: 30px;
+	width: 280px;
+	height: 40%;
+	border: 4px dashed #5B5B5B;
+	display: table;
+	border-radius: 15px;
+	text-align: center;
+	color: #5b5b5b;
+	font-size: 18px;
+	-webkit-user-select: none;
+}
+
+.side-bar .empty-guide div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.side-bar h2 {
+	margin: 0;
+	padding: 15px 20px;
+	text-align: center;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: normal;
+}
+
+.big-btn {
+	width: 342px;
+	padding: 18px 20px;
+	box-sizing: border-box;
+	line-height: 24px;
+	font-size: 24px;
+}
+.side-bar .big-btn:first-of-type {
+	margin-bottom: 1px;
+}
+
+.progress-buttons {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	float: left;
+}
+
+button[disabled="disabled"],
+button.disabled {
+	background: #2e2e2e;
+	color: #111;
+	cursor: not-allowed;
+}
+
+.total-area {
+	text-align: right;
+	position: absolute;
+	bottom: 122px;
+	left: 0;
+	width: 342px;
+	padding: 10px 20px;
+	line-height: 20px;
+	box-sizing: border-box;
+}
+
+
+
+
+/*****************************************************
+ Dish item
+ *****************************************************/
+ 
+.main-content .single-item {
+	width: 100%;
+	padding: 15px 30px;
+	box-sizing: border-box;
+	float: left;
+	position: relative;
+}
+
+h3 {
+	font-size: 18px;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+.single-item > div {
+	display: inline-block;
+	float: left;
+	
+}
+
+.main-content .single-item {
+	border-bottom: 1px solid #c9c9c9;
+}
+
+.main-content .single-item .amount-controls,
+.main-content .delete-item,
+.main-content .selected-options  {
+	display: none;
+}
+
+.main-content .single-item .image-wrap {
+	width: 160px;
+	height: 160px;
+	margin-right: 30px;
+	overflow: hidden;
+}
+
+.main-content .single-item .description {
+	max-width: 380px;
+	font-weight: normal;
+	position: relative;
+	margin-right: 30px;
+}
+
+.main-content .single-item .price {
+	font-size: 24px;
+	font-weight: bold;
+	position: absolute;
+	right: 130px;
+	top: 160px;
+}
+
+.main-content .single-item .tools {
+	float: right;
+	width: 80px;
+}
+.main-content .single-item .tools button {
+	width: 80px;
+	height: 80px;
+	box-sizing: border-box;
+	text-transform: capitalize;
+	display: block;
+	font-size: 16px;
+}
+.main-content .single-item .tools button .fa {
+	font-size: 30px;
+}
+.main-content .single-item .tools button:first-of-type { margin-bottom: 10px; }
+
+/*****************************************************
+ Basket area  (some values are inherited from the single-item above)
+ *****************************************************/
+.basket-area {
+	float: left;
+	width: 100%;
+	overflow-y: scroll;
+}
+.basket-area .single-item {
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	position: relative;
+	border-bottom: 1px solid #2d2d2d;
+}
+.basket-area .single-item .image-wrap,
+.basket-area .single-item .tools,
+.basket-area .single-item .ingress,
+.basket-area .single-item ul {
+	display: none;
+}
+
+.basket-area .amount-controls button,
+.basket-area .amount-controls span {
+	width: 25px;
+	height: 25px;
+	box-sizing: border-box;
+	display: inline-block;
+}
+.basket-area .amount-controls > * { margin-bottom: 5px; }
+.basket-area .amount-controls > *:last-of-type { margin-bottom: 0; }
+.basket-area .amount-controls span {
+	padding: 5px;
+	text-align: center;
+	font-size: 15px;
+	line-height: 20px;
+}
+
+.basket-area .amount-controls {
+	width: 30px;
+}
+
+.basket-area .description {
+	margin-left: 10px;
+	max-width: 259px;
+}
+
+.basket-area h3 {
+	font-size: 15px;
+}
+
+.basket-area .price {
+	bottom: 10px;
+	right: 10px;
+	position: absolute;
+	font-size: 18px;
+}
+.delete-item {
+	width: 30px;
+	height: 30px;
+	box-sizing: border-box;
+	padding: 5px 10px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 14px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.basket-area .selected-options {
+	display: block;
+	font-size: 9px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+/*****************************************************
+ Modals 
+ *****************************************************/
+
+
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	background: #232323;
+	opacity: 0.7;
+	z-index: 2000;
+}
+
+.info-modal {
+	display: none;
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	top: 10%;
+	left: 10%;
+	z-index: 2100;
+	background: #FFF;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modal-content,
+.modal-controls {
+	width: 100%;
+	padding: 40px 30px;
+	float: left;
+	box-sizing: border-box;
+	position: relative;
+}
+.modal-controls { 
+	padding-top: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+/*****************************************************
+  Food stuff in the modeal
+ *****************************************************/
+
+.modal-content .left,
+.modal-content .right {
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+}
+.modal-content .left {
+	padding-right: 30px;
+
+}
+
+.modal-content h2 {
+	text-transform: uppercase;
+	font-size: 30px;
+	margin: 0 0 20px;
+	padding: 0;
+	line-height: 33px;
+}
+
+.two-columns {
+	float: left;
+	width: 100%;
+}
+.two-columns > .col {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+.two-columns > .col:first-of-type {
+	padding-right: 30px;
+}
+
+.modal-content .image-wrap img {
+	max-width: 100%;
+	max-height: 250px;
+}
+.modal-content .stars {
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+}
+
+.modal-content fieldset input{
+	margin-bottom: 10px;
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
