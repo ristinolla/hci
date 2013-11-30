@@ -103,29 +103,84 @@
 			<!-- SIDEBARR	 -->
 			<aside id="side-bar" class="side-bar darkest-gray">
 				<h2 class="orange">Your Orders</h2>
-				<div class="empty-guide hidden">
+				<div id="empty-guide" class="empty-guide">
 					<div>Drag and drop<br>or<br>add items here</div>
 				</div>
 				<div id="basket-area" class="basket-area">
 					
 				</div>
-				<div id="recent-orders">
-				</div>	
+				<div id="recent-orders" class="dark-orange recent-orders">
+					<div class="recent-title open">Recent orders<i class="fa fa-caret-down pull-right"></i>
+						<i class="fa fa-caret-up pull-right"></i></div>
+					<ul>
+					</ul>
+				</div>
 				<div class="total-area orange">
 					<span class="darken-text">Total:</span> <span id="total-amount">0,00</span>&euro;
 				</div>
 
 				<div class="progress-buttons">
-					<button id="place-order-btn" class="big-btn green" >Place Order</button>
-					<button id="order-bill-btn" class="big-btn green" disabled="disabled">Order Bill</button>
+					<button id="place-order-btn" class="big-btn btn-block green" disabled="disabled">Place Order</button>
+					<button id="order-bill-btn" class="big-btn btn-block green" disabled="disabled">Order Bill</button>
 				</div>
 			</aside>
 			<!-- SIDEBARR end	 -->
 
+
 			<!--- payment start -->
 			<div id="payment-content" class="wide-content almost-white">
-				<h1>here goes payment content</h1>
+				<!-- Payment Main Content -->
+				<div class="payment-btn-wrapper">
+					<button class="btn-square-large light-blue open-modal" data-text="Thank you for ordering, waiter is on the way!" data-close="false"><img src="img/single_payment.png"><br>SINGLE PAYMENT</button>
+					<button class="btn-square-large light-blue" id="split-equal-section"><img src="img/split_equally.png"><br>SPLIT EQUALLY</button>
+					<button class="btn-square-large light-blue" id="split-by-item-section"><img src="img/split_by_items.png"><br>SPLIT BY ITEM</button>
+				</div>		
         	</div>
+
+        	<!-- Payment Split Equal Content -->
+			<div id="payment-split-equal-content" class="wide-content almost-white">
+				<div class="two-columns clearfix">
+					<div class="col">
+						<img src="img/circle/2.png" id="payment-equal-circle">
+					</div>
+					<div class="col">
+					<div class="split-equal-controls">
+						<div class="equation">
+							
+							<span id="equally-total">53.20 </span>€
+								/
+								<button class="blue increase">+</button>  
+								<button class="blue decrease">-</button>
+								<span id="equally-pieces">3</span>
+								=
+								<span id="equally-result">17.73</span>€
+							
+						</div>
+				</div>
+					</div>
+
+
+				</div>
+				<div class="full-row confirmation-buttons">
+					<button id="confirm-btn" class="big-btn green pull-right open-modal" data-text="Thank you for ordering, waiter is on the way!" data-close="false">Confirm</button>
+					<button class="big-btn red pull-left payment-back">Back</button>
+				</div>
+    		</div>
+
+    		<div id="payment-split-by-item-content" class="wide-content almost-white">
+    			<div class="two-columns clearfix">
+    				<div class="col">
+    				</div>
+    				<div class="col">
+
+    				</div>
+    			</div>
+    			<div class="full-row confirmation-buttons">
+					<button id="confirm-btn" class="big-btn green pull-right open-modal" data-text="Thank you for ordering, waiter is on the way!" data-close="false">Confirm</button>
+					<button class="big-btn red pull-left payment-back">Back</button>
+				</div>
+    		</div>
+        	<!-- payment end -->
 
         	<!-- payment start -->
 
@@ -135,10 +190,14 @@
 			<div id="modal-content" class="modal-content"></div>
 			<div id="modal-controls" class="modal-controls">
 				<button class="red btn-large pull-left" id="close-info-modal">Cancel</button>
-				<button class="green btn-large pull-right" id="add-item-modal">Add item</button>
+				<button class="green btn-large pull-right" data- id="add-item-modal">Add item</button>
 			</div>
 		</div>
-		
+		<div id="small-modal" class="small-modal">
+			<p></p>
+			<button class="btn btn-large blue">OK</button>
+		</div>
+
 		<div id="overlay" class="overlay"></div>
 		
         <!-- Underscore template:  http://underscorejs.org/#template -->

@@ -6,9 +6,8 @@ $(function() { // <-- when docment is ready the following is executed
     // resize layout function that is called everytime window is resized
     var resizeLayout = function(){
 	     
-	     $('#main-content').css('width', (window.outerWidth - 342) );
 		 $('#main-content').css('height', ($(window).outerHeight(true) - 80) );
-         $('#payment-content').css('height', ($(window).outerHeight(true) - 80) );
+         $('.wide-content').css('height', ($(window).outerHeight(true) - 80) );
 		 $('#side-bar').css('height', ($(window).outerHeight(true) - 80) );
 		 $('#basket-area').css('height', ($(window).outerHeight(true) - 292) );
 		 $('#overlay').css('height',$(window).outerHeight(true)).css('width', $(window).outerWidth(true));
@@ -27,6 +26,23 @@ $(function() { // <-- when docment is ready the following is executed
 	    
     });
 
+
+    // open modal on every .open-modal class, uses the text buttin
+    $('body').on('click','.open-modal' , function(e){
+        e.preventDefault();
+        var $this = $(this),
+            $modal = $('#small-modal');        
+
+        if ($this.attr('data-close') == "false") {
+            $modal.children('button').hide();
+        };
+
+        $('#overlay').fadeIn(200);
+        $modal.children("p").text($this.attr('data-text'))
+        .end().fadeIn(300);
+
+    });
+
     // temp for testing purposes
     $('#show-payment-section').on('click', function(e){
         e.preventDefault();
@@ -35,18 +51,56 @@ $(function() { // <-- when docment is ready the following is executed
         $('#side-bar').hide();
     });
 
+    $("body").on('click', ".payment-back", function(e){
+        e.preventDefault();
+        
+        $('#payment-split-equal-content').hide();
+        $('#payment-split-by-item-content').hide();
+        $('#payment-content').show();
+    });
+
+    // temp for testing purposes - payment split equal screen
+    $('#split-equal-section').on('click', function(e){
+        e.preventDefault();
+        $('#payment-split-equal-content').show();
+        $('#payment-content').hide();
+    });
+
+    $("#split-by-item-section").on('click', function(){
+        $('#payment-split-by-item-content').show();
+        $('#payment-split-equal-content').hide();
+        $('#payment-content').hide();
+
+    });
+
     // listener for "refresh-basket event"
     $(document).on('refresh-basket', function(){
     	$('#total-amount').text(0);
-        $('#basket-area').find('article.single-item').each(function(total) {
-            var $this = $(this),
-                price = parseFloat($this.attr('data-price').replace(',','.')),
-                count = parseFloat($this.attr('data-count')),
-                total = parseFloat($("#total-amount").text());
-            console.log( price,count,total );
-            var temp = (total + (price * count))*10;
-            $('#total-amount').text( Math.round(temp)/10 );
-        });
+        var $basket = $('#basket-area'),
+            $guide = $("#empty-guide");
+        if( $basket.children().length > 0 ){
+            $guide.hide();
+            $basket.show();
+            console.log('not empty');
+            $("#place-order-btn").removeAttr('disabled');
+
+            $basket.find('article.single-item').each(function(total) {
+                var $this = $(this),
+                    price = parseFloat($this.attr('data-price').replace(',','.')),
+                    count = parseFloat($this.attr('data-count')),
+                    total = parseFloat($("#total-amount").text());
+                var temp = (total + (price * count))*10;
+                $('#total-amount').text( Math.round(temp)/10 );
+            });
+
+        
+        } else {
+            $basket.hide();
+            $guide.show();
+            $("#place-order-btn").attr('disabled', 'disabled');
+            console.log( "empty" );
+        }
+
 
     });
     
@@ -121,7 +175,9 @@ $(function() { // <-- when docment is ready the following is executed
 		    };
 		    var string = _.template(template, data);
 		    $('#basket-area').append(string);
-	   		$(document).trigger('refresh-basket');
+	   		setTimeout(function() {
+                $(document).trigger('refresh-basket');
+            }, 400); 
 	    }
 
 	    	
@@ -149,7 +205,9 @@ $(function() { // <-- when docment is ready the following is executed
 
     	var string = _.template(template, data);
     	$target.append(string);
-    	$(document).trigger('refresh-basket');
+    	setTimeout(function() {
+             $(document).trigger('refresh-basket');
+         }, 500); 
     	$(this).parent().parent().fadeOut(300);
     	$('#overlay').fadeOut(600);
     });
@@ -161,7 +219,9 @@ $(function() { // <-- when docment is ready the following is executed
 		 $this.parent().fadeOut(300,function(){
 			 $(this).remove();
 		 });
-		 $(document).trigger('refresh-basket');
+		setTimeout(function() {
+             $(document).trigger('refresh-basket');
+         }, 400); 
 	     
     });
 
@@ -188,6 +248,64 @@ $(function() { // <-- when docment is ready the following is executed
     		$this.attr('disabled', 'disabled');
     	}
     });
+
+
+    /* placing the order */
+
+    $("#place-order-btn").on('click', function(e){
+        e.preventDefault();
+        var $basket = $("#basket-area"),
+            $recent = $('#recent-orders');
+        $basket.find('article.single-item').each(function() {
+            var object = {};
+            object.name = "kakka";
+        });
+    });
+
+
+    //***** PAYMENTS *** //
+
+    $("#payment-split-equal-content").on('click', '.increase', function(e){
+        e.preventDefault();
+        var $this = $(this),
+            total = parseFloat( $this.prev('#equally-total').text() ),
+            $result =  $('#equally-result'),
+            pieces = parseInt( $('#equally-pieces').text() ) + 1;
+
+        $("#equally-pieces").text(pieces);
+        var result = total / pieces * 100;
+        
+        $result.text( Math.floor(result)/100 );
+        if(pieces >= 8 ){
+            $this.attr('disabled', "disabled");
+        }
+        if(pieces > 2 ){
+            $this.next().removeAttr('disabled');
+        }
+        var string = "img/circle/" + pieces + ".png";
+        $('#payment-equal-circle').attr('src', string);
+    });
+
+    $("#payment-split-equal-content").on('click', '.decrease', function(e){
+        e.preventDefault();
+        var $this = $(this),
+            total = parseFloat( $this.prev().prev().text() ),
+            $result =  $('#equally-result'),
+            pieces = parseInt( $('#equally-pieces').text() ) - 1;
+        $("#equally-pieces").text(pieces);
+        var result = total / pieces * 100;
+        
+        $result.text( Math.floor(result)/100 );
+        if(pieces < 8 ){
+            $this.prev().removeAttr('disabled');
+        }
+        if(pieces <= 2){
+            $this.attr('disabled', 'disabled')
+        }
+        var string = "img/circle/" + pieces + ".png";
+        $('#payment-equal-circle').attr('src', string);
+    });
+
 
    
 });

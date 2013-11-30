@@ -8,6 +8,7 @@ input,
 select,
 textarea {
     color: #222;
+    font-family: "Montserrat", "Open Sans", sans-serif;
 }
 
 button {
@@ -81,9 +82,11 @@ a:active { text-shadow: 0px 0px 4px white; }
 
 .almost-white { background: #f6f4f0; color: #232323; }
 .blue { background: #487b86; color: white; }
+.light-blue { background: #5a9aa8; color: white; }
 
 .green { background: #1f7f5c; color: white; }
 
+.dark-orange { background: #af845a; color: white; }
 .orange { background: #dba571; color: white; }
 .orange .darken-text { color: #795837; }
 
@@ -142,6 +145,19 @@ ul.unstyled-list {
 #payment-content { display: none;  }
 
 
+#payment-split-equal-content,
+#payment-split-by-item-content { 
+    display: none;    
+}
+
+.full-row {
+	width: 100%;
+	float: left;
+}
+.confirmation-buttons {
+	padding: 40px;
+	box-sizing: border-box;
+}
 /*****************************************************
  Header Navigaton 
  *****************************************************/
@@ -242,6 +258,7 @@ header {
  *****************************************************/
 
 .main-content {
+	width: 67%;
 	float: left;
 	display: inline-block;
 }
@@ -253,13 +270,13 @@ header {
 .side-bar {
 	float: right;
 	display: inline-block;
-	width: 342px;
+	width: 33%;
 	position: relative;
 }
 
 .side-bar .empty-guide {
-	margin: 30px;
-	width: 280px;
+	margin: 5%;
+	width: 90%;
 	height: 40%;
 	border: 4px dashed #5B5B5B;
 	display: table;
@@ -268,6 +285,7 @@ header {
 	color: #5b5b5b;
 	font-size: 18px;
 	-webkit-user-select: none;
+	box-sizing: border-box;
 }
 
 .side-bar .empty-guide div {
@@ -285,11 +303,14 @@ header {
 }
 
 .big-btn {
-	width: 342px;
+	width: 310px;
 	padding: 18px 20px;
 	box-sizing: border-box;
 	line-height: 24px;
 	font-size: 24px;
+}
+.btn-block {
+	width: 100%;
 }
 .side-bar .big-btn:first-of-type {
 	margin-bottom: 1px;
@@ -300,6 +321,7 @@ header {
 	bottom: 0;
 	left: 0;
 	float: left;
+	width: 100%;
 }
 
 button[disabled="disabled"],
@@ -314,7 +336,7 @@ button.disabled {
 	position: absolute;
 	bottom: 122px;
 	left: 0;
-	width: 342px;
+	width: 100%;
 	padding: 10px 20px;
 	line-height: 20px;
 	box-sizing: border-box;
@@ -366,7 +388,7 @@ h3 {
 }
 
 .main-content .single-item .description {
-	max-width: 380px;
+	max-width: 324px;
 	font-weight: normal;
 	position: relative;
 	margin-right: 30px;
@@ -401,6 +423,7 @@ h3 {
  Basket area  (some values are inherited from the single-item above)
  *****************************************************/
 .basket-area {
+	display: none;
 	float: left;
 	width: 100%;
 	overflow-y: scroll;
@@ -474,6 +497,33 @@ h3 {
 	font-family: 'Open Sans', sans-serif;
 }
 
+.recent-orders {
+	position: absolute;
+	bottom: 162px;
+	width: 100%;
+}
+
+.recent-title {
+	line-height: 34px;
+	padding: 0 10px;
+	font-weight: normal;
+}
+.recent-title.open {
+	border-bottom: 1px solid #dba571;
+}
+.recent-title .fa {
+	line-height: 34px;
+}
+.recent-title .fa-caret-down {display: none;}
+.recent-title.open .fa-caret-down { display: inline-block; }
+.recent-title.open .fa-caret-up { display: none; } 
+
+.recent-orders ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 
 /*****************************************************
  Modals 
@@ -489,6 +539,7 @@ h3 {
 	opacity: 0.7;
 	z-index: 2000;
 }
+
 
 .info-modal {
 	display: none;
@@ -515,6 +566,25 @@ h3 {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+}
+
+.small-modal {
+	text-align: center;
+	display: none;
+	position: absolute;
+	width: 34%;
+	height: 34%;
+	top: 33%;
+	left: 33%;
+	z-index: 2100;
+	background: #fff;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	padding: 40px 20px;
+}
+.small-modal button {
+	font-size: 20px;
+	margin: 20px auto 20px;
 }
 
 /*****************************************************
@@ -567,6 +637,69 @@ h3 {
 	margin-bottom: 10px;
 }
 
+
+/*****************************************************
+   Payment functions
+   *****************************************************/ */
+
+#payment-content {
+	text-align: center;
+}
+
+.payment-btn-wrapper {
+	text-align: center;
+	margin: 18% auto;
+	height: 25%;
+}
+
+.btn-square-large {
+	height: 283px;
+	width: 283px;
+	font-size: 24px;
+	margin-right: 20px;
+}
+.btn-square-large:last-of-type {
+	margin-right: 0;
+}
+.btn-square-large img {
+	margin-bottom: 20px;
+}
+
+
+.split-equal-controls {
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    font-size: 44px;
+    line-height: 20px;
+    min-height: 50px;
+    min-width: 100px;
+}
+
+.equation {
+	position: relative;
+	height: 220px;
+	line-height: 220px;
+	margin-top: 80px;
+}
+
+.equation button {
+	width: 40px;
+}
+.equation .increase {
+	position: absolute;
+	top: 0px;
+}
+.equation .decrease {
+	position: absolute;
+	bottom: 0;
+}
+
+#payment-equal-circle {
+margin: 40px 40px;
+max-width: 400px;
+max-height: 400px;
+}
 
 
 
