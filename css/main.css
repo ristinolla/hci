@@ -523,6 +523,21 @@ h3 {
 	padding: 0;
 	list-style: none;
 }
+.recent-orders li {
+	font-family: "Open Sans", "Montserrat", sans-serif;
+	font-size: 12px;
+	padding: 4px 10px;
+}
+.recent-orders li:first-of-type { padding-top: 10px; }
+.recent-orders li:last-of-type { padding-bottom: 10px; }
+.recent-orders li .multiplier:after {
+	content: "x";
+	margin-right: 4px
+}
+.recent-orders .name {
+}
+
+
 
 
 /*****************************************************

@@ -1,6 +1,7 @@
 $(function() { // <-- when docment is ready the following is executed
     $('html').removeClass('no-js');
     
+    window.TOTAL = 0.0;    
    
     
     // resize layout function that is called everytime window is resized
@@ -89,8 +90,8 @@ $(function() { // <-- when docment is ready the following is executed
                     price = parseFloat($this.attr('data-price').replace(',','.')),
                     count = parseFloat($this.attr('data-count')),
                     total = parseFloat($("#total-amount").text());
-                var temp = (total + (price * count))*10;
-                $('#total-amount').text( Math.round(temp)/10 );
+                var temp = (total + (price * count))*100;
+                $('#total-amount').text( Math.round(temp)/100 );
             });
 
         
@@ -99,6 +100,9 @@ $(function() { // <-- when docment is ready the following is executed
             $guide.show();
             $("#place-order-btn").attr('disabled', 'disabled');
             console.log( "empty" );
+           
+            var recentTotal = parseFloat( $('#recent-orders').attr('data-total') ) * 100;
+            $('#total-amount').text(Math.round(recentTotal)/100 );
         }
 
 
@@ -255,11 +259,31 @@ $(function() { // <-- when docment is ready the following is executed
     $("#place-order-btn").on('click', function(e){
         e.preventDefault();
         var $basket = $("#basket-area"),
-            $recent = $('#recent-orders');
-        $basket.find('article.single-item').each(function() {
-            var object = {};
-            object.name = "kakka";
+            $recent = $('#recent-orders'),
+            elems = $basket.find('article.single-item'),
+            count = elems.length,
+            total = parseFloat($recent.attr('data-total'));
+        elems.each(function() {
+            var $this = $(this),
+                price = parseFloat($this.attr("data-price")),
+                TOTAL = TOTAL + price;
+
+            if(parseInt($this.attr('data-count')) > 1 ){
+                var htmlstring = '<li><span class="multiplier">' + parseInt($this.attr("data-count")) + '</span>';
+            } else {
+                var htmlstring = "<li>"
+            }
+            htmlstring = htmlstring + '<span class="name">' + $this.attr("data-name") + '</span><span class="price pull-right">'+ $this.attr("data-price")+'€</span></li>';
+            $recent.children('ul').append(htmlstring);
+            
+            // do on  the last round
+            if (!--count){
+                $basket.empty();
+                $(document).trigger('refresh-basket');
+                $recent.attr('data-total', TOTAL);
+            };
         });
+
     });
 
 
