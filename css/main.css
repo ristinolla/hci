@@ -661,7 +661,7 @@ h3 {
 
 /*****************************************************
    Payment functions
-   *****************************************************/ */
+   *****************************************************/ 
 
 #payment-content {
 	text-align: center;
@@ -723,7 +723,95 @@ max-height: 400px;
 }
 
 
+/*****************************************************
+   PAYMENT STACKS
+   *****************************************************/ 
 
+.unsorted {
+	padding: 30px;
+	float: left;
+	min-height: 200px;
+	min-width: 100%;
+
+	background: transparent url('../img/no-more.png') center center no-repeat;
+}
+
+.stack-item {
+	background: #232323;
+	color: white;
+	margin-bottom: 5px;
+	line-height: 32px;
+	padding: 3px 10px;
+	position: relative;
+	z-index: 0;
+	width: 407px;
+	margin-right: auto;
+	margin-left: auto;
+	float: left;
+}
+.stack-item span {
+	display: inline-block;
+	float: left;
+}
+.stack-item .pull-right{ float: right;}
+.stack-item .handler {
+	display: inline-block;
+	width: 6px;
+	height: 25px;
+	margin-top:4px;
+	margin-right: 10px;
+	background: url("../img/ellipses.png");
+}
+.stack-item.many {
+	background-color: transparent;
+	background-image:  url('../img/stacks_bg.png');
+	padding-bottom: 16px;
+	padding-right: 19px;
+}
+.stacks { padding: 20px 20px 20px 0; }
+.stack {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.stack .drop-area {
+	min-height: 80px;
+
+}
+
+.stack .footer {
+	height: 33px;
+	line-height: 33px;
+	padding-left: 10px;
+	font-size: 15px;
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+}
+.stack .tools {
+	background: #487b86;
+	padding-right: 5px;
+}
+.stack .tools .darker-text {
+	color: #487b86;
+	background: #5a9aa8;
+	border-left: 1px solid #487b86;
+	height: 32px;
+	width: 33px;
+	font-size: 16px;
+}
+.stack .tools span {
+	padding: 0 5px;
+	font-size: 15px;
+}
+
+.stack .stack-item {
+	width: 100%;
+	box-sizing: border-box;
+	margin:0;
+	border-bottom: 1px solid #2e2e2e;
+}
 
 /* ==========================================================================
    Media Queries

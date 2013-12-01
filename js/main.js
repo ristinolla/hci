@@ -370,6 +370,10 @@ $(function() { // <-- when docment is ready the following is executed
         $('#payment-equal-circle').attr('src', string);
     });
 
+    /** STACKS **/
 
+    $( "#unsorted, .drop-area" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
    
 });

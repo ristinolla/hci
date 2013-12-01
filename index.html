@@ -168,9 +168,49 @@
     		<div id="payment-split-by-item-content" class="wide-content almost-white">
     			<div class="two-columns clearfix">
     				<div class="col">
+    					<h1 style="text-align:center;">DRAG ITEMS TO STACKS</h1>
+    					<div id="unsorted" class="unsorted connectedSortable">
+    						<div class="stack-item">
+    							<span class="handler"></span><span class="name">The Most Delicious Hamburger</span><span class="pull-right">12.40 €</span>
+    						</div>
+    						<div class="stack-item">
+    							<span class="handler"></span>Coke<span class="pull-right">2.40 €</span>
+    						</div>
+    						<div class="stack-item">
+    							<span class="handler"></span>Coke<span class="pull-right">2.40 €</span>
+    						</div>
+    					</div>
     				</div>
     				<div class="col">
-
+    					<div class="stacks">
+	    					<div class="stack">
+	    						<div class="drop-area darkest-gray connectedSortable">
+	    						</div>
+	    						<div class="footer light-blue">
+	    							<span>STACK 1</span>
+	    							<div class="tools pull-right">
+	    								<button disabled="disabled" class="darker-text"><i class="fa fa-trash-o"></i></button>
+	    								<span>
+	    									TOTAL: <span class="stack-total">0.00</span> €
+	    								</span>
+	    							</div>
+	    						</div>
+	    					</div>
+	    					<div class="stack">
+	    						<div class="drop-area darkest-gray connectedSortable">
+	    						</div>
+	    						<div class="footer light-blue">
+	    							<span>STACK 2</span>
+	    							<div class="tools pull-right">
+	    								<button disabled="disabled" class="darker-text"><i class="fa fa-trash-o"></i></button>
+	    								<span>
+	    									TOTAL: <span class="stack-total">0.00</span> €
+	    								</span>
+	    							</div>
+	    						</div>
+	    					</div>
+	    				</div>
+    					<button id="spawn-a-stack"></button>
     				</div>
     			</div>
     			<div class="full-row confirmation-buttons">
