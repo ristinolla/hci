@@ -97,7 +97,9 @@ $(function() { // <-- when docment is ready the following is executed
     // temp for testing purposes - payment split equal screen
     $('#split-equal-section').on('click', function(e){
         e.preventDefault();
-         $('#equally-total').text(myOrder.GetTotal());
+        var total = Math.floor(myOrder.GetTotal()*100)/100/2;
+        $("#equally-result").text(total)
+        $('#equally-total').text(myOrder.GetTotal());
         $('#payment-split-equal-content').show();
         $('#payment-content').hide();
     });
