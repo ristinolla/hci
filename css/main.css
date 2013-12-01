@@ -507,21 +507,27 @@ h3 {
 	line-height: 34px;
 	padding: 0 10px;
 	font-weight: normal;
+	cursor: pointer;
 }
-.recent-title.open {
+.open .recent-title {
 	border-bottom: 1px solid #dba571;
 }
 .recent-title .fa {
 	line-height: 34px;
 }
-.recent-title .fa-caret-down {display: none;}
-.recent-title.open .fa-caret-down { display: inline-block; }
-.recent-title.open .fa-caret-up { display: none; } 
+.recent-orders .fa-caret-down {display: none;}
+.recent-orders.open .fa-caret-down { display: inline-block; }
+.recent-orders.open .fa-caret-up { display: none; } 
 
 .recent-orders ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	display: none;
+}
+
+.recent-orders.open ul {
+	display: block;
 }
 .recent-orders li {
 	font-family: "Open Sans", "Montserrat", sans-serif;

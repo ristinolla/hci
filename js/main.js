@@ -1,7 +1,41 @@
+window.order = {
+    items: [],
+    total: 0
+};
+
+var Order = function () {
+    this.total = 0;
+    this.items = [];
+
+    this.AddItem = function (data) {
+        this.items.push(data);
+        this.total = this.total + data.price;
+    };
+
+    this.GetTotal = function () {
+        return this.total;
+    };
+
+    this.GetList = function () {
+        var list = "";
+        for (var i = this.items.length - 1; i >= 0; i--) {
+            var item = this.items[i];
+
+            if(parseInt(item.count) > 1 ){
+                var htmlstring = '<li><span class="multiplier">' + item.count + '</span>';
+            } else {
+                var htmlstring = "<li>"
+            }
+            list = list + htmlstring + '<span class="name">' + item.name + '</span><span class="price pull-right">'+ item.price +'€</span></li>';
+        };
+        return list;
+    };
+};
+
 $(function() { // <-- when docment is ready the following is executed
     $('html').removeClass('no-js');
     
-    window.TOTAL = 0.0;    
+    var myOrder = new Order; 
    
     
     // resize layout function that is called everytime window is resized
@@ -45,7 +79,7 @@ $(function() { // <-- when docment is ready the following is executed
     });
 
     // temp for testing purposes
-    $('#show-payment-section').on('click', function(e){
+    $('#order-bill-btn').on('click', function(e){
         e.preventDefault();
         $('#payment-content').show();
         $('#main-content').hide();
@@ -54,7 +88,7 @@ $(function() { // <-- when docment is ready the following is executed
 
     $("body").on('click', ".payment-back", function(e){
         e.preventDefault();
-        
+       
         $('#payment-split-equal-content').hide();
         $('#payment-split-by-item-content').hide();
         $('#payment-content').show();
@@ -63,6 +97,7 @@ $(function() { // <-- when docment is ready the following is executed
     // temp for testing purposes - payment split equal screen
     $('#split-equal-section').on('click', function(e){
         e.preventDefault();
+         $('#equally-total').text(myOrder.GetTotal());
         $('#payment-split-equal-content').show();
         $('#payment-content').hide();
     });
@@ -80,6 +115,7 @@ $(function() { // <-- when docment is ready the following is executed
         var $basket = $('#basket-area'),
             $guide = $("#empty-guide");
         if( $basket.children().length > 0 ){
+           
             $guide.hide();
             $basket.show();
             console.log('not empty');
@@ -91,7 +127,8 @@ $(function() { // <-- when docment is ready the following is executed
                     count = parseFloat($this.attr('data-count')),
                     total = parseFloat($("#total-amount").text());
                 var temp = (total + (price * count))*100;
-                $('#total-amount').text( Math.round(temp)/100 );
+                var result = Math.round(temp + (myOrder.GetTotal()*100) ) / 100 ;
+                $('#total-amount').text( result );
             });
 
         
@@ -99,13 +136,17 @@ $(function() { // <-- when docment is ready the following is executed
             $basket.hide();
             $guide.show();
             $("#place-order-btn").attr('disabled', 'disabled');
-            console.log( "empty" );
            
-            var recentTotal = parseFloat( $('#recent-orders').attr('data-total') ) * 100;
-            $('#total-amount').text(Math.round(recentTotal)/100 );
+            $('#total-amount').text(myOrder.GetTotal());
         }
 
 
+    });
+
+    $("#recent-title").on('click', function(){
+        //codehere
+        $("#recent-orders ul").slideToggle();
+        $("#recent-orders").toggleClass('open');
     });
     
 
@@ -259,28 +300,25 @@ $(function() { // <-- when docment is ready the following is executed
     $("#place-order-btn").on('click', function(e){
         e.preventDefault();
         var $basket = $("#basket-area"),
-            $recent = $('#recent-orders'),
+            $list = $('#recent-orders').find('ul'),
             elems = $basket.find('article.single-item'),
-            count = elems.length,
-            total = parseFloat($recent.attr('data-total'));
+            count = elems.length;
+        
+        // loop the elements in the basket
         elems.each(function() {
-            var $this = $(this),
-                price = parseFloat($this.attr("data-price")),
-                TOTAL = TOTAL + price;
-
-            if(parseInt($this.attr('data-count')) > 1 ){
-                var htmlstring = '<li><span class="multiplier">' + parseInt($this.attr("data-count")) + '</span>';
-            } else {
-                var htmlstring = "<li>"
-            }
-            htmlstring = htmlstring + '<span class="name">' + $this.attr("data-name") + '</span><span class="price pull-right">'+ $this.attr("data-price")+'€</span></li>';
-            $recent.children('ul').append(htmlstring);
+            var $this = $(this);
             
-            // do on  the last round
+            myOrder.AddItem({
+                name: $this.attr("data-name"),
+                count: parseInt($this.attr("data-count")),
+                price: parseFloat($this.attr("data-price"))
+            });
+            // after the last round
             if (!--count){
                 $basket.empty();
+                $list.empty().append(myOrder.GetList());
                 $(document).trigger('refresh-basket');
-                $recent.attr('data-total', TOTAL);
+                $("#order-bill-btn").removeAttr('disabled');
             };
         });
 
