@@ -91,7 +91,7 @@ a:active { text-shadow: 0px 0px 4px white; }
 .orange .darken-text { color: #795837; }
 
 .red { background: #a8514f; color: white; }
-
+.light-red { background: #b75654; color:  white; }
 .stars { color: #dba571;}
 
 .blue a,
@@ -158,6 +158,20 @@ ul.unstyled-list {
 	padding: 40px;
 	box-sizing: border-box;
 }
+
+.welcome-middle {
+	margin: 5%;
+	width: 320px;
+	text-align: center;
+	margin: 0 auto;
+}
+.welcome-middle h1 { font-size: 40px; }
+.welcome-middle p {
+	margin: 14px;
+	font-size: 20px;
+	line-height: 20px;
+	font-family: "Montserrat";
+}
 /*****************************************************
  Header Navigaton 
  *****************************************************/
@@ -193,12 +207,15 @@ header {
 }
 
 .right-nav a,
-.left-nav a {
+.left-nav a,
+.right-nav li span,
+.left-nav li span {
 	height: 50px;
 	display: inline-block;
 }
 
-.right-nav a {
+.right-nav a,
+.right-nav li span {
 	padding: 15px 30px;
 }
 
@@ -206,7 +223,8 @@ header {
 	border-left: 1px solid #232323;
 }
 
-.left-nav a { padding: 15px 15px 15px 40px; }
+.left-nav a,
+.left-nav li span { padding: 15px 15px 15px 40px; }
 .left-nav li {
 	background: #232323 url('../img/nav_divider_dark.png') 0 0 no-repeat;	
 }
@@ -215,7 +233,7 @@ header {
 }
 
 
-.left-nav li.current {	
+.left-nav li:last-of-type {	
 	background: transparent url('../img/nav_divider_to_light.png') 0 0 no-repeat;
 }
 
@@ -261,6 +279,32 @@ header {
 	width: 67%;
 	float: left;
 	display: inline-block;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.menu-item {
+	width: 50%;
+	display: inline-block;
+	float: left;
+	box-sizing: border-box;
+	padding: 24px 12px 0;
+}
+.menu-item:nth-child(odd) {
+	padding-left: 24px;
+}
+.menu-item:nth-child(even) {
+	padding-right: 24px;
+}
+.menu-item img {
+	max-width: 100%;
+	height: 200px;
+}
+.menu-item h2 {
+	text-align: center;
+	text-transform: uppercase;
+	margin: 0;
+	line-height: 2;
 }
 
 /*****************************************************

@@ -35,9 +35,9 @@
 		<div id="main-container" class="container clearfix">
 			<header class="dark-gray">
 				<ul id="left-nav" class="inline-list left-nav">
-					<li class="home"><a href="#">Home</a></li>
-					<li><a href="#">Main Courses</a></li>
-					<li class="current"><a href="#">Burgers</a></li>
+					
+					<!-- <li><a href="#">Main Courses</a></li>
+					<li class="current"><a href="#">Burgers</a></li>-->
 				</ul>
 				<ul id="right-nav" class="inline-list right-nav">
 					<li class="has-dropdown"><a href="#">EN <i class="fa fa-caret-down"></i></a>
@@ -47,59 +47,29 @@
 							<li><a href="#">Swedish</a></li>
 						</ul>
 					</li>
-					<li class="blue"><a href="#">Waiter</a></li>
+					<li class="blue"><a href="#" class="open-modal" data-text="Thank you, waiter is on the way!" data-close="true">Waiter</a></li>
 				</ul>
 			</header>
-			<div id="main-content" class="main-content almost-white">
-				<article class="single-item"
-				 data-uri="food/burgers/burger.html"
-				 data-modal="true"
-				 >
-					<div class="image-wrap"><img src="http://placekitten.com/160/160"></div>
-					<div class="description">
-						<h3>burger</h3>
-						<p class="ingress">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem.</p>
-						<ul class="details">
-							<li>1233kcal</li>
-							<li>100% Finnish meat</li>
-							<li>High in protein</li>
-						</ul>
-					</div>
-					<span class="price">12.40 &euro;</span>
-					<div class="tools">
-						<button class="show-info blue"><i class="fa fa-info"></i><br>Info</button>
-						<button class="add-item green"><i class="fa fa-plus"></i><br>Add</button>
-					</div>
-				</article>
-				<article class="single-item" 
-					data-uri="false" 
-					data-modal="false"
-					data-name="Medium coke"
-					data-price="2.40"
-					>
-					<div class="image-wrap"><img src="http://placekitten.com/160/160"></div>
-					<div class="description">
-						<h3>Medium Coke</h3>
-						<p class="ingress">Freshhhh coke, you know you want it.</p>
-						<ul class="details">
-							<li>one billion kcal</li>
-							<li>100% non healthy</li>
-							<li>has some coke...</li>
-						</ul>
-					</div>
-					<span class="price">2.40 &euro;</span>
-					<div class="tools">
-						<button class="show-info blue" disabled="disabled"><i class="fa fa-info"></i><br>Info</button>
-						<button class="add-item green"><i class="fa fa-plus"></i><br>Add</button>
-					</div>
+			
+			<!-- init screen -->
+			<div id="init-screen" class="wide-content almost-white">
+				<div class="welcome-middle">
+					<h1>Welcome!</h1>
+					<p>Please select</p>
+					<button id="select-menu" class="big-btn btn-block light-blue">Menu</button>
+					<p>or</p>
+					<button class="big-btn btn-block red open-modal" data-text="Thank you, waiter is on the way!" data-close="true">Call Waiter</button>
+				</div>
+			</div>
 
-				</article>
+			<div id="main-content" class="main-content almost-white">
+
 			</div>
 			
 			
 			
 			<!-- SIDEBARR	 -->
-			<aside id="side-bar" class="side-bar darkest-gray">
+			<aside id="side-bar" class="side-bar darkest-gray" style="display:none;">
 				<h2 class="orange">Your Orders</h2>
 				<div id="empty-guide" class="empty-guide">
 					<div>Drag and drop<br>or<br>add items here</div>
@@ -130,8 +100,8 @@
 				<!-- Payment Main Content -->
 				<div class="payment-btn-wrapper">
 					<button class="btn-square-large light-blue open-modal" data-text="Thank you for ordering, waiter is on the way!" data-close="false"><img src="img/single_payment.png"><br>SINGLE PAYMENT</button>
-					<button class="btn-square-large light-blue" id="split-equal-section"><img src="img/split_equally.png"><br>SPLIT EQUALLY</button>
-					<button class="btn-square-large light-blue" id="split-by-item-section"><img src="img/split_by_items.png"><br>SPLIT BY ITEM</button>
+					<button class="btn-square-large light-blue split-equal-section"><img src="img/split_equally.png"><br>SPLIT EQUALLY</button>
+					<button class="btn-square-large light-blue split-by-item-section"><img src="img/split_by_items.png"><br>SPLIT BY ITEM</button>
 				</div>		
         	</div>
 
@@ -170,15 +140,7 @@
     				<div class="col">
     					<h1 style="text-align:center;">DRAG ITEMS TO STACKS</h1>
     					<div id="unsorted" class="unsorted connectedSortable">
-    						<div class="stack-item">
-    							<span class="handler"></span><span class="name">The Most Delicious Hamburger</span><span class="pull-right">12.40 €</span>
-    						</div>
-    						<div class="stack-item">
-    							<span class="handler"></span>Coke<span class="pull-right">2.40 €</span>
-    						</div>
-    						<div class="stack-item">
-    							<span class="handler"></span>Coke<span class="pull-right">2.40 €</span>
-    						</div>
+
     					</div>
     				</div>
     				<div class="col">
@@ -233,7 +195,7 @@
 		</div>
 		<div id="small-modal" class="small-modal">
 			<p></p>
-			<button class="btn btn-large blue">OK</button>
+			<button id="close-modal" class="btn btn-large blue">OK</button>
 		</div>
 
 		<div id="overlay" class="overlay"></div>

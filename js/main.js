@@ -30,6 +30,19 @@ var Order = function () {
         };
         return list;
     };
+
+    this.GetStacks = function () {
+        var stacks = "";
+        for (var i = this.items.length - 1; i >= 0; i--) {
+            var item = this.items[i];
+
+            for(var k = parseInt(item.count) - 1 ; k >= 0; k--){
+                stacks = stacks + '<div class="stack-item"><span class="handler"></span>'+item.name+'<span class="pull-right">'+item.price+' €</span></div>';
+            }
+
+        };
+        return stacks;
+    };
 };
 
 $(function() { // <-- when docment is ready the following is executed
@@ -53,6 +66,18 @@ $(function() { // <-- when docment is ready the following is executed
     	// timeout to limit the resize function to be called just in 400ms intervals
 	    setTimeout(resizeLayout, 200);
     });
+
+     var updateNav = function(add,string) {
+        if(typeof string == "undefined"){ var string = null; }
+        if(add){
+            $("#left-nav")
+                .children('li:not(.home)').remove()
+                .end().append(string);
+
+        } else {
+            $("#left-nav").find('li:not(.home)').remove();
+        }
+    }
     
     //** show the language menu
     $('.has-dropdown').on('click', function(e){
@@ -78,9 +103,19 @@ $(function() { // <-- when docment is ready the following is executed
 
     });
 
+    // open the main windoq
+    $("#select-menu").on('click', function(){
+        $("#init-screen").hide();
+        $("#side-bar").show();
+        $("#main-content").show();
+        $('#left-nav').append('<li class="home"><a id="home-btn" href="#">Home</a></li>');
+        getList('food/main-menu.html');
+    });
+
     // temp for testing purposes
     $('#order-bill-btn').on('click', function(e){
         e.preventDefault();
+        updateNav('add',"<li><span>Payment</span></li>");
         $('#payment-content').show();
         $('#main-content').hide();
         $('#side-bar').hide();
@@ -88,28 +123,44 @@ $(function() { // <-- when docment is ready the following is executed
 
     $("body").on('click', ".payment-back", function(e){
         e.preventDefault();
-       
         $('#payment-split-equal-content').hide();
         $('#payment-split-by-item-content').hide();
         $('#payment-content').show();
+        var string = "<li><span>Payments</span></li>"
+        updateNav("add",string);
     });
 
     // temp for testing purposes - payment split equal screen
-    $('#split-equal-section').on('click', function(e){
+    $('body').on('click',".split-equal-section", function(e){
         e.preventDefault();
         var total = Math.floor(myOrder.GetTotal()*100)/100/2;
         $("#equally-result").text(total)
         $('#equally-total').text(myOrder.GetTotal());
         $('#payment-split-equal-content').show();
         $('#payment-content').hide();
+        var string = "<li><a href='#' class='payment-back'>Payments</a></li><li><span>Split Equally</span></li>"
+        updateNav("add",string);
     });
 
-    $("#split-by-item-section").on('click', function(){
+    $("body").on('click','.split-by-item-section', function(){
         $('#payment-split-by-item-content').show();
         $('#payment-split-equal-content').hide();
         $('#payment-content').hide();
-
+        var string = "<li><a href='#' class='payment-back'>Payments</a></li><li><span>Split by Item</span></li>";
+        
+        updateNav("add",string);
+        var stacks = myOrder.GetStacks();
+        if(stacks){
+            $("#unsorted").append(stacks);
+            setTimeout(function() {
+                $( "#unsorted, .drop-area" ).sortable({
+                    connectWith: ".connectedSortable"
+                }).disableSelection();
+            }, 200);
+        }
     });
+
+
 
     // listener for "refresh-basket event"
     $(document).on('refresh-basket', function(){
@@ -120,7 +171,6 @@ $(function() { // <-- when docment is ready the following is executed
            
             $guide.hide();
             $basket.show();
-            console.log('not empty');
             $("#place-order-btn").removeAttr('disabled');
 
             $basket.find('article.single-item').each(function(total) {
@@ -166,6 +216,44 @@ $(function() { // <-- when docment is ready the following is executed
 	    	 }
 	    });
     };
+
+    $("body").on('click','#close-modal', function(e) {
+        e.preventDefault();
+        $(this).parent().fadeOut(300);
+        $("#overlay").fadeOut(400);
+    })
+
+    // open modal function
+    var getList = function(uri){
+        $.ajax({
+             url: uri,
+             success: function(data){
+                var $content = $('#main-content');
+                 $content.empty().append(data)
+                 $content.show();
+             }
+        });
+    };
+
+
+
+    $('body').on('click','#home-btn', function(e) {
+        e.preventDefault();
+        getList('food/main-menu.html');
+        updateNav(false,null);
+    });
+
+    $('body').on('click','#maincourse', function(e) {
+        e.preventDefault();
+        getList('food/main-courses/main-courses.html');
+        updateNav("add","<li><span>Main Courses</span></li>");
+    });
+
+    //hook to open list event 
+    $("body").on('click','.open-list', function(){
+        updateNav("add",$(this).attr('data-nav'));
+        getList($(this).attr('data-uri'));
+    });
 
     // ajaxing the information from the burger file that is is in dataurl of the article
     $('body').on('click','.show-info', function(e) {
@@ -233,7 +321,6 @@ $(function() { // <-- when docment is ready the following is executed
 
     // on add in modal do following
     $('#add-item-modal').on('click', function () {
-    	console.log( "lll" );
     	var $article = $(this).parent().parent().find('article.single-item'),
     		$target = $('#basket-area');
     		template = $('#basket-item-template').text(); 
@@ -372,8 +459,5 @@ $(function() { // <-- when docment is ready the following is executed
 
     /** STACKS **/
 
-    $( "#unsorted, .drop-area" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-   
+
 });
