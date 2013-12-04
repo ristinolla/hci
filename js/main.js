@@ -414,6 +414,8 @@ $(function() { // <-- when docment is ready the following is executed
     });
 
 
+
+
     //***** PAYMENTS *** //
 
     $("#payment-split-equal-content").on('click', '.increase', function(e){
@@ -459,5 +461,22 @@ $(function() { // <-- when docment is ready the following is executed
 
     /** STACKS **/
 
+    $("#spawn-a-stack").on('click', function() {
+        $( "#unsorted, .drop-area" ).sortable( "destroy" );
+        $("#stacks").append('<div class="stack"><div class="drop-area darkest-gray connectedSortable"> </div><div class="footer light-blue"><span>STACK</span> <div class="tools pull-right"><button  class="stack-delete darker-text"><i class="fa fa-trash-o"></i></button><span>TOTAL: <span class="stack-total">0.00</span> €</span></div> </div></div>');
+        setTimeout(function() {
+            $( "#unsorted, .drop-area" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        }, 300);
+    });
+
+    $('body').on('click', '.stack-delete', function() {
+        var $this = $(this);
+        var elements = $this.closest('div.stack').children('.drop-area').children('div');
+        $("#unsorted").append(elements);
+        $this.closest('div.stack').remove();
+   
+    });
 
 });

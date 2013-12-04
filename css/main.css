@@ -278,7 +278,7 @@ header {
 .main-content {
 	width: 67%;
 	float: left;
-	display: inline-block;
+	display: none;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -429,6 +429,10 @@ h3 {
 	height: 160px;
 	margin-right: 30px;
 	overflow: hidden;
+}
+.main-content .single-item .image-wrap img {
+	max-width: 160px;
+	height: auto;
 }
 
 .main-content .single-item .description {
@@ -652,6 +656,7 @@ h3 {
 	margin: 20px auto 20px;
 }
 
+
 /*****************************************************
   Food stuff in the modeal
  *****************************************************/
@@ -713,7 +718,7 @@ h3 {
 
 .payment-btn-wrapper {
 	text-align: center;
-	margin: 18% auto;
+	margin: 5% auto;
 	height: 25%;
 }
 
@@ -762,10 +767,9 @@ h3 {
 
 #payment-equal-circle {
 margin: 40px 40px;
-max-width: 400px;
-max-height: 400px;
+max-width: 300px;
+max-height: 300px;
 }
-
 
 /*****************************************************
    PAYMENT STACKS
@@ -776,8 +780,9 @@ max-height: 400px;
 	float: left;
 	min-height: 200px;
 	min-width: 100%;
-
-	background: transparent url('../img/no-more.png') center center no-repeat;
+	max-height: 400px;
+	overflow-y: scroll;
+	/*background: transparent url('../img/no-more.png') center center no-repeat;*/
 }
 
 .stack-item {
@@ -855,6 +860,16 @@ max-height: 400px;
 	box-sizing: border-box;
 	margin:0;
 	border-bottom: 1px solid #2e2e2e;
+}
+
+#spawn-a-stack {
+	color: #9E9D85;
+	width: 400px;
+	box-sizing: border-box;
+	padding: 20px;
+	border: 4px dashed #9E9D85;
+	border-radius: 10px;
+	margin-left: 120px;
 }
 
 /* ==========================================================================
