@@ -864,12 +864,12 @@ max-height: 300px;
 
 #spawn-a-stack {
 	color: #9E9D85;
-	width: 400px;
+	width: 240px;
 	box-sizing: border-box;
 	padding: 20px;
 	border: 4px dashed #9E9D85;
 	border-radius: 10px;
-	margin-left: 120px;
+	margin-left: 20px;
 }
 
 /* ==========================================================================
